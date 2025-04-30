@@ -2,6 +2,23 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
+### Tickers (`/tickers`)
+
+*   **`POST /tickers`**: Creates a new ticker entry. Requires a JSON body with the stock symbol.
+    *   Body: `{ "symbol": "AAPL" }`
+    *   Response: The newly created or fetched ticker data.
+*   **`GET /tickers`**: Retrieves a list of all stored tickers.
+    *   Response: An array of ticker data objects.
+*   **`GET /tickers/:symbol`**: Retrieves data for a specific ticker by its symbol (e.g., `/tickers/MSFT`).
+    *   Response: Ticker data object or 404 if not found.
+*   **`PUT /tickers/:symbol`**: Updates data for a specific ticker (e.g., `/tickers/GOOGL`). Fetches latest data from the external API and updates the stored record.
+    *   Response: The updated ticker data object or 404 if not found.
+*   **`DELETE /tickers/:symbol`**: Deletes a specific ticker by its symbol (e.g., `/tickers/TSLA`).
+    *   Response: 200 OK on success or 404 if not found.
+
+**Note:** All symbol parameters are case-insensitive but are stored and compared in uppercase.
+
+
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
@@ -85,19 +102,3 @@ The API allows managing stock ticker data.
 **Base URL:** `http://localhost:3000` (assuming default port)
 
 **Swagger UI:** Access the interactive API documentation at [/api](http://localhost:3000/api).
-
-### Tickers (`/tickers`)
-
-*   **`POST /tickers`**: Creates a new ticker entry. Requires a JSON body with the stock symbol.
-    *   Body: `{ "symbol": "AAPL" }`
-    *   Response: The newly created or fetched ticker data.
-*   **`GET /tickers`**: Retrieves a list of all stored tickers.
-    *   Response: An array of ticker data objects.
-*   **`GET /tickers/:symbol`**: Retrieves data for a specific ticker by its symbol (e.g., `/tickers/MSFT`).
-    *   Response: Ticker data object or 404 if not found.
-*   **`PUT /tickers/:symbol`**: Updates data for a specific ticker (e.g., `/tickers/GOOGL`). Fetches latest data from the external API and updates the stored record.
-    *   Response: The updated ticker data object or 404 if not found.
-*   **`DELETE /tickers/:symbol`**: Deletes a specific ticker by its symbol (e.g., `/tickers/TSLA`).
-    *   Response: 200 OK on success or 404 if not found.
-
-**Note:** All symbol parameters are case-insensitive but are stored and compared in uppercase.
